@@ -7,9 +7,9 @@ import (
 
 func main() {
 	start := time.Now()
-	for i := 0; i < 1000; i++ {
-		day1()
-	}
+
+	day1()
+	day2()
 
 	elapsed := time.Since(start)
 	fmt.Println(elapsed)
