@@ -6,7 +6,7 @@ import (
 )
 
 func day1() {
-	h := helpers.GetFileContentAsInt("input/day1.txt")
+	h := helpers.GetFileContentAsInt("input/day01.txt")
 	counter := 0
 
 	for i := 1; i < len(h); i++ {
