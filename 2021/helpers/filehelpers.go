@@ -3,7 +3,6 @@ package helpers
 import (
 	"bufio"
 	"os"
-	"strconv"
 )
 
 func GetFileContent(path string) []string {
@@ -28,8 +27,7 @@ func GetFileContentAsInt(path string) []int {
 	lines := make([]int, 0)
 
 	for sc.Scan() {
-		i, _ := strconv.Atoi(sc.Text())
-		lines = append(lines, i)
+		lines = append(lines, ToInt(sc.Text()))
 	}
 
 	return lines
