@@ -12,6 +12,7 @@ func main() {
 	day2()
 	day3()
 	day4()
+	day5()
 
 	elapsed := time.Since(start)
 	fmt.Println(elapsed)
