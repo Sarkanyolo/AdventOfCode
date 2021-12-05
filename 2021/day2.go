@@ -29,6 +29,5 @@ func day2() {
 		}
 	}
 
-	fmt.Println("Day 2 Part 1: ", depth*forward)
-	fmt.Println("Day 2 Part 2: ", d2*f2)
+	fmt.Println("Day 2: ", depth*forward, d2*f2)
 }

@@ -21,18 +21,17 @@ func day4() {
 		ingame[i] = true
 	}
 
-	first := true
+	first := 0
 
 	for n := 0; len(ingame) > 0 && n < len(numbers); n++ {
 		for b := 0; b < len(bingos); b++ {
 			if _, ok := ingame[b]; ok {
 				if bingos[b].Mark(numbers[n]) {
-					if first {
-						fmt.Println("Day 4 Part 1: ", numbers[n]*bingos[b].Value())
-						first = false
+					if first == 0 {
+						first = numbers[n] * bingos[b].Value()
 					}
 					if len(ingame) < 2 {
-						fmt.Println("Day 4 Part 2: ", numbers[n]*bingos[b].Value())
+						fmt.Println("Day 4: ", first, numbers[n]*bingos[b].Value())
 					}
 					delete(ingame, b)
 				}
