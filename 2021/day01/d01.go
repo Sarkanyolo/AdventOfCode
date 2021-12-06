@@ -1,14 +1,14 @@
-package main
+package day01
 
 import (
 	"aoc/helpers"
 	"fmt"
 )
 
-func day1() {
+func Solve() {
 	counter := 0
 
-	h := helpers.GetFileContentAsInt("input/day01.txt")
+	h := helpers.GetFileContentAsInt("day01/input.txt")
 	for i := 1; i < len(h); i++ {
 		if h[i] > h[i-1] {
 			counter += 1

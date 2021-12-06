@@ -1,4 +1,4 @@
-package main
+package day02
 
 import (
 	"aoc/helpers"
@@ -7,8 +7,8 @@ import (
 	"strings"
 )
 
-func day2() {
-	data := helpers.GetFileContent("input/day02.txt")
+func Solve() {
+	data := helpers.GetFileContent("day02/input.txt")
 	depth, forward := 0, 0
 	d2, f2, aim := 0, 0, 0
 

@@ -1,4 +1,4 @@
-package main
+package day06
 
 import (
 	"aoc/helpers"
@@ -14,8 +14,8 @@ func getSum(m map[int8]uint64) uint64 {
 	return sum
 }
 
-func day6() {
-	data := helpers.GetFileContent("input/day06.txt")
+func Solve() {
+	data := helpers.GetFileContent("day06/input.txt")
 	nums := helpers.StringsToInts(strings.Split(data[0], ","))
 
 	lantern := make(map[int8]uint64)

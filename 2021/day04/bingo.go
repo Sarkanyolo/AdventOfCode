@@ -1,4 +1,4 @@
-package containers
+package day04
 
 import (
 	"aoc/helpers"

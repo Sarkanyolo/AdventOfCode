@@ -1,14 +1,13 @@
-package main
+package day05
 
 import (
-	"aoc/containers"
 	"aoc/helpers"
 	"fmt"
 	"strconv"
 	"strings"
 )
 
-func parseinput(s string) containers.Vec {
+func parseinput(s string) vec {
 	s = strings.Replace(s, " -> ", ",", 1)
 	n := strings.Split(s, ",")
 	x1, _ := strconv.Atoi(n[0])
@@ -16,14 +15,14 @@ func parseinput(s string) containers.Vec {
 	x2, _ := strconv.Atoi(n[2])
 	y2, _ := strconv.Atoi(n[3])
 
-	return containers.Vec{
-		C1: containers.Coord{
-			X: x1,
-			Y: y1,
+	return vec{
+		c1: coord{
+			x: x1,
+			y: y1,
 		},
-		C2: containers.Coord{
-			X: x2,
-			Y: y2,
+		c2: coord{
+			x: x2,
+			y: y2,
 		},
 	}
 }
@@ -40,9 +39,9 @@ func getOverlaps(field [1000][1000]int) int {
 	return overlap
 }
 
-func day5() {
-	data := helpers.GetFileContent("input/day05.txt")
-	vecs := make([]containers.Vec, 0)
+func Solve() {
+	data := helpers.GetFileContent("day05/input.txt")
+	vecs := make([]vec, 0)
 
 	for line := 0; line < len(data); line++ {
 		vecs = append(vecs, parseinput(data[line]))
@@ -53,7 +52,7 @@ func day5() {
 	for v := 0; v < len(vecs); v++ {
 		coords := vecs[v].GetLines()
 		for i := 0; i < len(coords); i++ {
-			field[coords[i].Y][coords[i].X] += 1
+			field[coords[i].y][coords[i].x] += 1
 		}
 	}
 
@@ -62,7 +61,7 @@ func day5() {
 	for v := 0; v < len(vecs); v++ {
 		coords := vecs[v].GetDiagonals()
 		for i := 0; i < len(coords); i++ {
-			field[coords[i].Y][coords[i].X] += 1
+			field[coords[i].y][coords[i].x] += 1
 		}
 	}
 

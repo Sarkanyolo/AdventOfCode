@@ -1,4 +1,4 @@
-package main
+package day03
 
 import (
 	"aoc/helpers"
@@ -77,8 +77,8 @@ func filterdata(data []string, filter func(int, int) string) int64 {
 	return -1
 }
 
-func day3() {
-	data := helpers.GetFileContent("input/day03.txt")
+func Solve() {
+	data := helpers.GetFileContent("day03/input.txt")
 
 	datacopy := make([]string, len(data))
 	copy(datacopy, data)

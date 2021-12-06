@@ -1,23 +1,22 @@
-package main
+package day04
 
 import (
-	"aoc/containers"
 	"aoc/helpers"
 	"fmt"
 	"strings"
 )
 
-func day4() {
-	data := helpers.GetFileContent("input/day04.txt")
+func Solve() {
+	data := helpers.GetFileContent("day04/input.txt")
 	numbers := helpers.StringsToInts(strings.Split(data[0], ","))
 
 	// Holds the bingos that didn't win yet for Part2
 	ingame := make(map[int]bool)
 
 	// Holds the bingo tables
-	bingos := make([]containers.Bingo, 0)
+	bingos := make([]Bingo, 0)
 	for i := 0; i < ((len(data) - 1) / 6); i++ {
-		bingos = append(bingos, containers.MakeBingo(data[i*6+2:i*6+7]))
+		bingos = append(bingos, MakeBingo(data[i*6+2:i*6+7]))
 		ingame[i] = true
 	}
 
