@@ -2,19 +2,16 @@ package main
 
 import (
 	"fmt"
+	"main/day01"
+	"main/day02"
 	"time"
 )
 
 func main() {
 	start := time.Now()
 
-	day1()
-	day2()
-	day3()
-	day4()
-	day5()
-	day6()
-	day7()
+	day01.Solve()
+	day02.Solve()
 
 	elapsed := time.Since(start)
 	fmt.Println(elapsed)

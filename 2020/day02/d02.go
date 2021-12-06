@@ -1,8 +1,8 @@
-package main
+package day02
 
 import (
 	"fmt"
-	"io/ioutil"
+	"main/helpers"
 	"strconv"
 	"strings"
 )
@@ -14,48 +14,29 @@ type password struct {
 	pass string
 }
 
-func main() {
-	pass := readFile("D:\\1.txt")
-
-	// First
-	counter := 0
-	for _, p := range pass {
-		if isValidOld(p) {
-			counter += 1
-		}
-	}
-
-	fmt.Println(counter)
-
-	// Second
-	counter = 0
-	for _, p := range pass {
-		if isValid(p) {
-			counter += 1
-		}
-	}
-
-	fmt.Println(counter)
-}
-
-func readFile(fname string) (passwords []password) {
-	b, err := ioutil.ReadFile(fname)
-	if err != nil {
-		return nil
-	}
-
-	lines := strings.Split(string(b), "\n")
-	passwords = make([]password, 0, len(lines))
+func Solve() {
+	lines := helpers.GetFileContent("day02/input.txt")
+	pass := make([]password, 0, len(lines))
 
 	for _, l := range lines {
 		if len(l) > 0 {
 			parts := strings.Split(l, " ")
 			min, max := getMinMax(parts[0])
-			passwords = append(passwords, password{min, max, string([]rune(parts[1])[0]), parts[2]})
+			pass = append(pass, password{min, max, string([]rune(parts[1])[0]), parts[2]})
 		}
 	}
 
-	return passwords
+	p1, p2 := 0, 0
+	for _, p := range pass {
+		if isValidOld(p) {
+			p1 += 1
+		}
+		if isValid(p) {
+			p2 += 1
+		}
+	}
+
+	fmt.Println("Day02: ", p1, p2)
 }
 
 func getMinMax(str string) (min int, max int) {
