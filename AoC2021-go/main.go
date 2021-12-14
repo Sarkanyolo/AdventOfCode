@@ -9,6 +9,7 @@ import (
 	"aoc/day06"
 	"aoc/day07"
 	"aoc/day11"
+	"aoc/day14"
 	"fmt"
 	"time"
 )
@@ -25,6 +26,7 @@ func main() {
 	day07.Solve()
 	//day08.Solve()
 	day11.Solve()
+	day14.Solve()
 
 	elapsed := time.Since(start)
 	fmt.Println(elapsed)
