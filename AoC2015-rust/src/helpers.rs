@@ -1,7 +1,8 @@
-use std::path;
-use std::fs;
+use std::fs::File;
+use std::io::BufRead;
+use std::io::BufReader;
 
-pub fn read_file(fpath: &str) -> String {
-    let file = path::Path::new(fpath);
-    fs::read_to_string(&file).expect("Unable to read file")
+pub fn read_lines(fpath: &str) -> Vec<String> {
+    let file = BufReader::new(File::open(fpath).unwrap());
+    file.lines().map(|x| x.unwrap()).collect::<Vec<String>>()
 }
