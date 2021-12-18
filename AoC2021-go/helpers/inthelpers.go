@@ -1,13 +1,17 @@
 package helpers
 
-func Min(a, b int) int {
+import (
+	"constraints"
+)
+
+func Min[T constraints.Ordered](a, b T) T {
 	if a < b {
 		return a
 	}
 	return b
 }
 
-func Max(a, b int) int {
+func Max[T constraints.Ordered](a, b T) T {
 	if a > b {
 		return a
 	}
