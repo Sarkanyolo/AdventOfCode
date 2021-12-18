@@ -1,3 +1,6 @@
+pub mod day01;
+pub mod helpers;
+
 fn main() {
-    println!("Hello, world!");
+    day01::d01();
 }
