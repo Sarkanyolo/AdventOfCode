@@ -18,5 +18,5 @@ pub fn d01() {
         }
     }
 
-    println!("2015 Day01: {} {}", floor, part2);
+    println!("2015 Day 01: {} {}", floor, part2);
 }

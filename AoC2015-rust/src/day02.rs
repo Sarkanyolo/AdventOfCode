@@ -29,5 +29,5 @@ pub fn d02() {
         p2 += part2(w, h, l);
     }
 
-    println!("2015 Day02: {} {}", p1, p2);
+    println!("2015 Day 02: {} {}", p1, p2);
 }

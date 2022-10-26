@@ -3,6 +3,15 @@ name = "aoc_2015_rust"
 version = "0.1.0"
 edition = "2021"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[profile.dev]
+opt-level = 0
+panic = "abort"
+
+[profile.release]
+opt-level = 3
+lto = "fat"
+panic = "abort"
+debug = false
 
 [dependencies]
+md5 = "0.7"
