@@ -2,6 +2,7 @@ pub mod day01;
 pub mod day02;
 pub mod day03;
 pub mod day04;
+pub mod day05;
 pub mod helpers;
 
 use std::env;
@@ -13,4 +14,5 @@ fn main() {
     day02::d02();
     day03::d03();
     day04::d04();
+    day05::d05();
 }
