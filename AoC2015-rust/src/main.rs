@@ -13,6 +13,6 @@ fn main() {
     day01::d01();
     day02::d02();
     day03::d03();
-    day04::d04();
+    // day04::d04(); - Slow
     day05::d05();
 }
