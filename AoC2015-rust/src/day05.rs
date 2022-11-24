@@ -1,7 +1,7 @@
 use crate::helpers;
 
 const VOWELS: [char; 5] = ['a', 'e', 'i', 'o', 'u'];
-const INVALIDS: [&'static str; 4] = ["ab", "cd", "pq", "xy"];
+const INVALIDS: [&str; 4] = ["ab", "cd", "pq", "xy"];
 
 pub fn d05() {
     let mut count: u16 = 0;

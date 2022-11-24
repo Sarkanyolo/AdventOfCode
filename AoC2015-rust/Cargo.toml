@@ -12,6 +12,7 @@ opt-level = 3
 lto = "fat"
 panic = "abort"
 debug = false
+strip = true
 
 [dependencies]
 md5 = "0.7"
