@@ -1,11 +1,13 @@
-class Fabric {
-  constructor(rows) {
+export class Fabric {
+  rows: number;
+  arr: number[][];
+  constructor(rows : number) {
     this.rows = rows;
-    this.arr = this.Create2DArray(rows);
+    this.arr = this.Create2DArray();
   }
 
   Create2DArray() {
-    const arr = [];
+    const arr : number[][] = [];
 
     for (let i = 0; i < this.rows; i += 1) {
       arr[i] = [];
@@ -19,7 +21,7 @@ class Fabric {
     return arr;
   }
 
-  FillPatch(id, startx, starty, sizex, sizey) {
+  FillPatch(id: number, startx: number, starty: number, sizex: number, sizey : number) {
     for (let x = startx; x < startx + sizex; x += 1) {
       for (let y = starty; y < starty + sizey; y += 1) {
         if (this.arr[x][y] === 0) {
@@ -42,7 +44,7 @@ class Fabric {
     return counter;
   }
 
-  GetNotOverlappedId(id, startx, starty, sizex, sizey) {
+  GetNotOverlappedId(id: number, startx: number, starty: number, sizex: number, sizey : number) {
     for (let x = startx; x < startx + sizex; x += 1) {
       for (let y = starty; y < starty + sizey; y += 1) {
         if (this.arr[x][y] !== id) {
@@ -54,5 +56,3 @@ class Fabric {
     return id;
   }
 }
-
-module.exports = Fabric;

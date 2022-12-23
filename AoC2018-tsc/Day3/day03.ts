@@ -1,15 +1,17 @@
-const fs = require('fs');
-const Fabric = require('./fabric');
+import { Fabric } from './fabric';
 
 class Day3 {
-  constructor() {
-    this.text = fs.readFileSync('D:\\i.txt', 'utf8').split('\r\n');
+  text: string[];
+  fabric: Fabric;
+
+  constructor(input: string[]) {
+    this.text = input;
     this.fabric = new Fabric(1000);
   }
 
   // eslint-disable-next-line class-methods-use-this
-  getParams(line) {
-    return line.split(/#| |@|:|x|,/).filter(e => e !== '');
+  getParams(line: string) {
+    return line.split(/#| |@|:|x|,/).filter(e => e !== "");
   }
 
   part1() {
@@ -34,6 +36,9 @@ class Day3 {
   }
 }
 
-const day3 = new Day3();
-console.log(day3.part1());
-console.log(day3.part2());
+export function getDay03(input: string[]) {
+  const day3 = new Day3(input);
+  return [day3.part1(), day3.part2()];
+}
+
+

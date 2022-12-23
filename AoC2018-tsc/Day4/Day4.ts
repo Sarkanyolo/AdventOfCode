@@ -1,7 +1,11 @@
-const fs = require('fs');
-
 class Day4 {
-  constructor(text) {
+  text: string[];
+  summary: {};
+  minutesByGuard: {};
+  activeGuard: number;
+  lastFallSleepTime: number;
+  minuteInMS: number;
+  constructor(text : string[]) {
     this.text = text;
     this.summary = {};
     this.minutesByGuard = {};
@@ -69,7 +73,8 @@ class Day4 {
   }
 }
 
-const text = fs.readFileSync('D:\\i.txt', 'utf8').split('\r\n');
-const d4 = new Day4(text);
-console.log('Part1: ', d4.Part1());
-console.log('Part2: ', d4.Part2());
+export function getDay04(input : string[]){
+  const d4 = new Day4(input);
+  return [d4.Part1(), d4.Part2()];
+}
+
