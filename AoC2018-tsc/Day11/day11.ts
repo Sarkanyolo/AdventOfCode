@@ -1,11 +1,14 @@
 class Day11 {
-  constructor(size, sn) {
+  size: number;
+  sn: number;
+  grid: number[][];
+  constructor(size: number, sn: number) {
     this.size = size;
     this.sn = sn;
-    this.grid = this.getGrid(size, sn);
+    this.grid = this.getGrid();
   }
 
-  getPower(x, y) {
+  getPower(x: number, y: number) {
     const id = x + 10;
     const power = (id * y + this.sn) * id;
 
@@ -34,7 +37,7 @@ class Day11 {
     return grid;
   }
 
-  getValue(coordx, coordy, gridSize) {
+  getValue(coordx: number, coordy: number, gridSize: number) {
     // Filter out invalid gridsizes
     if (coordx + gridSize > this.size - 1 || coordy + gridSize > this.size - 1) {
       return Number.MIN_SAFE_INTEGER;
@@ -50,7 +53,7 @@ class Day11 {
     return val;
   }
 
-  part1(resultGrid) {
+  part1(resultGrid: number) {
     let max = Number.MIN_SAFE_INTEGER;
     let coord = '';
     for (let x = 1; x < this.size - resultGrid; x += 1) {
@@ -85,6 +88,7 @@ class Day11 {
   }
 }
 
-const d11 = new Day11(301, 2187);
-console.log('Part1: ', d11.part1(3));
-console.log('Part2: ', d11.part2());
+export function getDay11(input: number) {
+  const d11 = new Day11(301, input);
+  return [d11.part1(3), d11.part2()]
+}

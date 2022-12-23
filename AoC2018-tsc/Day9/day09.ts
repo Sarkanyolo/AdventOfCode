@@ -1,12 +1,17 @@
 class Day9 {
-  constructor(players, marbles) {
+  scores: {[key: number]: number};
+  currentPlayer: number;
+  marbles: number[];
+  index: number;
+  playerCount: number;
+  constructor(players: number, marbleCount: number) {
     this.scores = {};
     this.currentPlayer = 1;
     this.marbles = [0];
     this.index = 0;
     this.playerCount = players;
 
-    for (let i = 1; i <= marbles; i += 1) {
+    for (let i = 1; i <= marbleCount; i += 1) {
       if (i % 23 !== 0) {
         this.normalCase(i);
       } else {
@@ -22,7 +27,7 @@ class Day9 {
     if (this.currentPlayer > this.playerCount) this.currentPlayer = 1;
   }
 
-  addPoints(point) {
+  addPoints(point : number) {
     if (this.scores[this.currentPlayer] === undefined) {
       this.scores[this.currentPlayer] = point;
     } else {
@@ -30,7 +35,7 @@ class Day9 {
     }
   }
 
-  clockwise(n) {
+  clockwise(n : number) {
     let i = this.index;
     while (n-- > 0) {
       i += 1;
@@ -40,7 +45,7 @@ class Day9 {
     return i;
   }
 
-  counterClockwise(n) {
+  counterClockwise(n: number) {
     let i = this.index;
     while (n-- > 0) {
       i -= 1;
@@ -50,7 +55,7 @@ class Day9 {
     return i;
   }
 
-  insert(pos, item) {
+  insert(pos: number, item: number) {
     if (pos === this.marbles.length) {
       this.marbles.push(item);
     } else {
@@ -58,17 +63,17 @@ class Day9 {
     }
   }
 
-  remove(pos) {
+  remove(pos: number) {
     this.marbles.splice(pos, 1);
   }
 
-  normalCase(i) {
+  normalCase(i: number) {
     const pos = this.clockwise(1);
     this.insert(pos, i);
     this.index = pos + 1;
   }
 
-  specialCase(i) {
+  specialCase(i: number) {
     const pos = this.counterClockwise(7);
     this.addPoints(i);
     this.addPoints(this.marbles[pos]);
@@ -88,7 +93,7 @@ class Day9 {
   }
 }
 
-const playerCount = 418;
-const marbleCount = 70769;
-const d9 = new Day9(playerCount, marbleCount);
-console.dir(d9.getMax());
+export function getDay09(playerCount : number, marbleCount : number){
+  const p1 = new Day9(playerCount, marbleCount);
+  return [p1.getMax(), NaN];
+}

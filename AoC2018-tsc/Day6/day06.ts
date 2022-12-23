@@ -1,7 +1,6 @@
-const fs = require('fs');
-
 class Day6 {
-  constructor(input) {
+  coords: number[][];
+  constructor(input: string[]) {
     this.coords = [];
 
     for (let i = 0; i < input.length; i += 1) {
@@ -10,12 +9,11 @@ class Day6 {
     }
   }
 
-  // eslint-disable-next-line class-methods-use-this
-  distance(x1, y1, x2, y2) {
+  distance(x1: number, y1: number, x2: number, y2: number) {
     return Math.abs(x1 - x2) + Math.abs(y1 - y2);
   }
 
-  getClosest(x, y) {
+  getClosest(x: number, y: number) {
     let count = Number.MIN_SAFE_INTEGER;
     let dist = Number.MAX_SAFE_INTEGER;
     let selected = Number.MIN_SAFE_INTEGER;
@@ -35,8 +33,8 @@ class Day6 {
     return selected;
   }
 
-  getDistances(min, max) {
-    const dict = {};
+  getDistances(min: number, max: number) {
+    const dict: { [key: number]: number } = {};
 
     for (let x = min; x < max; x += 1) {
       for (let y = min; y < max; y += 1) {
@@ -85,8 +83,7 @@ class Day6 {
   }
 }
 
-const input = fs.readFileSync('D:\\i.txt', 'utf8').split('\r\n');
-const d6 = new Day6(input);
-
-console.log('Part1: ', d6.part1());
-console.log('Part2: ', d6.part2());
+export function getDay06(input: string[]) {
+  const d6 = new Day6(input);
+  return [d6.part1(), d6.part2()];
+}

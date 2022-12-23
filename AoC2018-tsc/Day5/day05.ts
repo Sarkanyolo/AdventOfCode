@@ -1,8 +1,4 @@
-const fs = require('fs');
-
-const text = fs.readFileSync('D:\\i.txt', 'utf8');
-
-function react(str) {
+function react(str: string) {
   let oldlen = -1;
   while (oldlen !== str.length) {
     oldlen = str.length;
@@ -16,12 +12,12 @@ function react(str) {
   return str.length;
 }
 
-function remove(str, chars) {
+function remove(str: string, chars: string) {
   const set = new Set(chars);
   return [...str].filter(i => !set.has(i)).join('');
 }
 
-function getMinLength() {
+function getMinLength(text : string) {
   let min = Number.MAX_SAFE_INTEGER;
   for (let i = 0; i < 26; i += 1) {
     const ch1 = String.fromCharCode(97 + i);
@@ -35,5 +31,6 @@ function getMinLength() {
   return min;
 }
 
-console.log('Part1: ', react(text));
-console.log('Part2: ', getMinLength());
+export function getDay05(input: string) {
+  return [react(input), getMinLength(input)];
+}

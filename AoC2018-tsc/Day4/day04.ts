@@ -1,20 +1,22 @@
+import { getKeys } from "../helpers";
+
+const minuteInMS = 60000;
+
 class Day4 {
-  text: string[];
-  summary: {};
-  minutesByGuard: {};
+  summary: { [key: number]: number };
+  minutesByGuard: { [key: number]: number[] };
   activeGuard: number;
   lastFallSleepTime: number;
-  minuteInMS: number;
-  constructor(text : string[]) {
-    this.text = text;
+  constructor(text: string[]) {
     this.summary = {};
     this.minutesByGuard = {};
     this.activeGuard = 0;
     this.lastFallSleepTime = 0;
-    this.minuteInMS = 60000;
 
-    for (let i = 0; i < this.text.length; i += 1) {
-      const input = this.text[i].replace('[', '').split('] ');
+    text = text.sort();
+
+    for (let i = 0; i < text.length; i += 1) {
+      const input = text[i].replace('[', '').split('] ');
       const datetime = Date.parse(input[0]);
       const instruction = input[1];
 
@@ -29,14 +31,14 @@ class Day4 {
     }
   }
 
-  fillTimeTable(time) {
-    for (let i = this.lastFallSleepTime; i < time; i += this.minuteInMS) {
+  fillTimeTable(time: number) {
+    for (let i = this.lastFallSleepTime; i < time; i += minuteInMS) {
       this.minutesByGuard[this.activeGuard][new Date(i).getMinutes()] += 1;
     }
   }
 
-  wakeUp(time) {
-    const val = ((+time) - this.lastFallSleepTime) / this.minuteInMS;
+  wakeUp(time: number) {
+    const val = ((+time) - this.lastFallSleepTime) / minuteInMS;
 
     // create entry for new guard; fill entry for existing guards
     if (this.summary[this.activeGuard] === undefined) {
@@ -50,7 +52,7 @@ class Day4 {
   }
 
   Part1() {
-    const guardid = Object.keys(this.summary).reduce((a, b) => (this.summary[a] > this.summary[b] ? a : b));
+    const guardid = getKeys(this.summary).reduce((a, b) => (this.summary[a] > this.summary[b] ? a : b));
     const max = this.minutesByGuard[guardid].indexOf(Math.max(...this.minutesByGuard[guardid]));
     return guardid * max;
   }
@@ -60,7 +62,7 @@ class Day4 {
     let maxValue = -1;
     let guardId = -1;
 
-    Object.keys(this.summary).forEach((g) => {
+    getKeys(this.summary).forEach((g) => {
       const localMax = Math.max(...this.minutesByGuard[g]);
       if (localMax > maxValue) {
         guardId = g;
@@ -73,8 +75,7 @@ class Day4 {
   }
 }
 
-export function getDay04(input : string[]){
+export function getDay04(input: string[]) {
   const d4 = new Day4(input);
   return [d4.Part1(), d4.Part2()];
 }
-
