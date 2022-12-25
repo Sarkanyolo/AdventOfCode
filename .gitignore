@@ -5,3 +5,9 @@ Cargo.lock
 
 debug/
 target/
+
+
+package-lock.json
+node_modules/
+dist/
+tmp/
