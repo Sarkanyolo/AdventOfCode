@@ -1,8 +1,9 @@
-const fs = require('fs');
-const PlantArray = require('./plantArray');
+import {PlantArray} from './plantArray';
 
 class Day12 {
-  constructor(input) {
+  patterns: PlantArray[];
+  plants: PlantArray;
+  constructor(input : string[]) {
     this.patterns = [];
     this.plants = new PlantArray(input[0].split(' ')[2]);
 
@@ -13,11 +14,11 @@ class Day12 {
     });
   }
 
-  hasPattern(p) {
-    return this.patterns.some(e => PlantArray.isMatching(p, e.plants));
+  hasPattern(pattern : number[]) {
+    return this.patterns.some(e => PlantArray.isMatching(pattern, e.plants));
   }
 
-  calculate(iteration) {
+  calculate(iteration : number) {
     for (let count = 0; count < iteration; count++) {
       for (let i = this.plants.getFirst() - 4; i < this.plants.getLast() + 4; i++) {
         if (this.hasPattern(this.plants.getPattern(i))) {
@@ -31,10 +32,8 @@ class Day12 {
   }
 }
 
-const input = fs.readFileSync('D:\\i.txt', 'utf8').split('\r\n');
-
-let d12 = new Day12(input);
-console.log('Part1: ', d12.calculate(20));
-
-d12 = new Day12(input);
-console.log('Part2: ', d12.calculate(125) + (50000000000 - 125) * 109);
+export function getDay12(input : string[]){
+  const p1 = new Day12(input);
+  const p2 = new Day12(input);
+  return [p1.calculate(20), p2.calculate(125) + (50000000000 - 125) * 109]
+}

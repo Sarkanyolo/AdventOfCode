@@ -1,22 +1,23 @@
-const fs = require('fs');
-const Car = require('./car');
-const Map2D = require('./map2d');
+import {Car, TurnChars, RoadChars} from './car';
+import {Map2D} from './map2d';
 
 class Day13 {
-  constructor(input) {
+  cars: Car[];
+  map: Map2D;
+  constructor(input:string[]) {
     this.cars = [];
     this.map = new Map2D(input[0].length, input.length);
     this.init(input);
   }
 
-  init(input) {
+  init(input:string[]) {
     const signs = 'v^<>';
     for (let y = 0; y < input.length; y += 1) {
       for (let x = 0; x < input[y].length; x += 1) {
         const char = input[y][x];
         this.map.setCoord(x, y, char);
         if (signs.includes(char)) {
-          this.cars.push(new Car(x, y, char));
+          this.cars.push(new Car(x, y, char as TurnChars));
         }
       }
     }
@@ -52,36 +53,37 @@ class Day13 {
   }
 
   part1() {
-    while (true) {
+    let result : false | number[] = false;
+    while (result === false) {
       this.cars.sort(Car.compareCars);
       for (let i = 0; i < this.cars.length; i += 1) {
         const coord = this.cars[i].getNextCoord();
         const char = this.map.getCoord(coord[0], coord[1]);
-        this.cars[i].go(char);
-        const result = this.hasCrash();
-        if (result !== false) return result;
+        this.cars[i].go(char as RoadChars);
+        result = this.hasCrash();
       }
     }
+
+    return result;
   }
 
   part2() {
-    while (true) {
-      if (this.cars.length === 1) return [this.cars[0].x, this.cars[0].y];
+    while (this.cars.length > 1) {
       for (let i = 0; i < this.cars.length; i += 1) {
         const coord = this.cars[i].getNextCoord();
         const char = this.map.getCoord(coord[0], coord[1]);
-        this.cars[i].go(char);
+        this.cars[i].go(char as RoadChars);
         this.removeCrash();
       }
       this.cars = this.cars.filter(x => !x.removed).sort(Car.compareCars);
     }
+
+    return [this.cars[0].x, this.cars[0].y]
   }
 }
 
-const input = fs.readFileSync('D:\\i.txt', 'utf8').split('\r\n');
-
-let day13 = new Day13(input);
-console.log('Part1: ', day13.part1());
-
-day13 = new Day13(input);
-console.log('Part2: ', day13.part2());
+export function getDay13(input:string[]){
+  const p1 = new Day13(input);
+  const p2 = new Day13(input);
+  return [p1.part1(), p2.part2()]
+}

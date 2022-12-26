@@ -6,7 +6,9 @@ import { getDay05 } from './Day5/day05';
 import { getDay06 } from './Day6/day06';
 import { getDay08 } from './Day8/day08';
 import { getDay09 } from './Day9/day09';
-import { getDay11 } from './Day11/day11';
+// import { getDay11 } from './Day11/day11';
+import { getDay12 } from './Day12/day12';
+import { getDay13 } from './Day13/day13';
 
 function getFile(path: string) {
     return fs.readFileSync(path, 'utf8');
@@ -37,5 +39,10 @@ console.dir(`Day09 - Part1: ${day09[0]}, Part2: ${day09[1]}`);
 
 console.dir(`Day10 - Part1: ${NaN}, Part2: ${NaN}`);
 
-const day11 = getDay11(9110);
-console.dir(`Day11 - Part1: ${day11[0]}, Part2: ${day11[1]}`);
+console.dir(`Day11 - Part1: ${NaN}, Part2: ${NaN}`);
+
+const day12 = getDay12(getFile("input/12.txt").split('\r\n'));
+console.dir(`Day12 - Part1: ${day12[0]}, Part2: ${day12[1]}`);
+
+const day13 = getDay13(getFile("input/13.txt").split('\r\n'));
+console.dir(`Day13 - Part1: ${day13[0]}, Part2: ${day13[1]}`);

@@ -1,3 +1,3 @@
-export function getKeys<T extends {}>(obj: T) {
+export function getKeys<T extends object>(obj: T) {
     return Object.keys(obj) as Array<keyof T>;
 }

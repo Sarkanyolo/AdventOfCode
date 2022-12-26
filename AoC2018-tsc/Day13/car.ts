@@ -1,15 +1,30 @@
-class Car {
-  constructor(x, y, char) {
+type DirectionType = 'up' | 'down' | 'left' | 'right';
+type TurnType = "left" | "right" | "straight";
+export type TurnChars = 'v' | '^' | '<' | '>';
+export type RoadChars = '\\' | '/' | '+';
+
+export class Car {
+  removed: boolean;
+  x: number;
+  y: number;
+  direction: DirectionType;
+  generator: Generator<TurnType>;
+  getNextTurn: () => TurnType;
+  go: (char: RoadChars) => void;
+  getNextCoord: () => [number, number];
+  constructor(x: number, y: number, char: TurnChars) {
     this.removed = false;
     this.x = x;
     this.y = y;
+    this.getNextCoord = () => [0, 0];
+    this.go = this.goUp;
     this.direction = Car.symbolToDirection(char);
     this.setDirection();
     this.generator = Car.nextTurnGenerator();
     this.getNextTurn = () => this.generator.next().value;
   }
 
-  static symbolToDirection(char) {
+  static symbolToDirection(char: TurnChars): DirectionType {
     switch (char) {
       case 'v':
         return 'down';
@@ -24,12 +39,12 @@ class Car {
     }
   }
 
-  static compareCars(x, y) {
+  static compareCars(x: Car, y: Car) {
     const res = x.y - y.y;
     return res !== 0 ? res : x.x - y.x;
   }
 
-  static* nextTurnGenerator() {
+  static * nextTurnGenerator(): Generator<TurnType> {
     while (true) {
       yield 'left';
       yield 'straight';
@@ -60,7 +75,7 @@ class Car {
     }
   }
 
-  goUp(char) {
+  goUp(char: RoadChars) {
     this.y -= 1;
     if (char === '\\') {
       this.direction = 'left';
@@ -75,7 +90,7 @@ class Car {
     this.setDirection();
   }
 
-  goDown(char) {
+  goDown(char: RoadChars) {
     this.y += 1;
     if (char === '\\') {
       this.direction = 'right';
@@ -92,7 +107,7 @@ class Car {
     this.setDirection();
   }
 
-  goLeft(char) {
+  goLeft(char: RoadChars) {
     this.x -= 1;
     if (char === '\\') {
       this.direction = 'up';
@@ -109,7 +124,7 @@ class Car {
     this.setDirection();
   }
 
-  goRight(char) {
+  goRight(char: RoadChars) {
     this.x += 1;
     if (char === '\\') {
       this.direction = 'down';
@@ -152,5 +167,3 @@ class Car {
     this.turnLeft();
   }
 }
-
-module.exports = Car;

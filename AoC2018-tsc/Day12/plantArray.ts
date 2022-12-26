@@ -1,5 +1,7 @@
-class PlantArray {
-  constructor(str) {
+export class PlantArray {
+  plants: number[];
+  newplants: number[];
+  constructor(str : string) {
     this.plants = [];
     this.newplants = [];
     for (let i = 0; i < str.length; i++) {
@@ -7,7 +9,7 @@ class PlantArray {
     }
   }
 
-  add(val) {
+  add(val : number) {
     this.newplants.push(val);
   }
 
@@ -28,7 +30,7 @@ class PlantArray {
     return this.plants.reduce((a, b) => a + b, 0);
   }
 
-  getPattern(index, len = 5) {
+  getPattern(index : number, len = 5) {
     const arr = [];
     for (let i = 0; i < len; i++) {
       if (this.plants.includes(i + index)) arr.push(i);
@@ -37,9 +39,7 @@ class PlantArray {
     return arr;
   }
 
-  static isMatching(a, b) {
+  static isMatching<T>(a : T[], b : T[]) {
     return a.length === b.length && a.every(e => b.includes(e));
   }
 }
-
-module.exports = PlantArray;
