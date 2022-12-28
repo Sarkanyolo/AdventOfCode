@@ -1,4 +1,5 @@
 import fs from 'fs';
+import { getDay01 } from './Day1/day01';
 import { getDay02 } from "./Day2/day02"
 import { getDay03 } from './Day3/day03';
 import { getDay04 } from './Day4/day04';
@@ -13,6 +14,9 @@ import { getDay13 } from './Day13/day13';
 function getFile(path: string) {
     return fs.readFileSync(path, 'utf8');
 }
+
+const day01 = getDay01(getFile("input/01.txt").split('\r\n'));
+console.dir(`Day01 - Part1: ${day01[0]}, Part2: ${day01[1]}`);
 
 const day02 = getDay02(getFile("input/02.txt").split('\r\n'));
 console.dir(`Day02 - Part1: ${day02[0]}, Part2: ${day02[1]}`);
@@ -46,3 +50,5 @@ console.dir(`Day12 - Part1: ${day12[0]}, Part2: ${day12[1]}`);
 
 const day13 = getDay13(getFile("input/13.txt").split('\r\n'));
 console.dir(`Day13 - Part1: ${day13[0]}, Part2: ${day13[1]}`);
+
+// Day14 077201
