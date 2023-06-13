@@ -14,7 +14,7 @@ class Day3 {
     return line.split(/#| |@|:|x|,/).filter(e => e !== "");
   }
 
-  part1() {
+  part1() : number {
     this.text.forEach((element) => {
       const p = this.getParams(element);
       this.fabric.FillPatch(+p[0], +p[1], +p[2], +p[3], +p[4]);
@@ -24,7 +24,7 @@ class Day3 {
   }
 
   part2() {
-    let result;
+    let result = 0;
     this.text.forEach((element) => {
       const p = this.getParams(element);
       const res = this.fabric.GetNotOverlappedId(+p[0], +p[1], +p[2], +p[3], +p[4]);

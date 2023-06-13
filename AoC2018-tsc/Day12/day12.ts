@@ -1,4 +1,4 @@
-import {PlantArray} from './plantArray';
+import {PlantArray} from './plantArray.js';
 
 class Day12 {
   patterns: PlantArray[];

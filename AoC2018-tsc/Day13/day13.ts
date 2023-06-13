@@ -1,5 +1,5 @@
-import {Car, TurnChars, RoadChars} from './car';
-import {Map2D} from './map2d';
+import {Car, TurnChars, RoadChars} from './car.js';
+import {Map2D} from './map2d.js';
 
 class Day13 {
   cars: Car[];
@@ -85,5 +85,5 @@ class Day13 {
 export function getDay13(input:string[]){
   const p1 = new Day13(input);
   const p2 = new Day13(input);
-  return [p1.part1(), p2.part2()]
+  return [p1.part1().join(), p2.part2().join()]
 }

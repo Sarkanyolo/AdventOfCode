@@ -55,5 +55,5 @@ function showMatch(input: string[]): [string, string] {
 }
 
 export function getDay02(input: string[]) {
-  return [getResult(input), showMatch(input)]
+  return [getResult(input), showMatch(input)[0]]
 }
